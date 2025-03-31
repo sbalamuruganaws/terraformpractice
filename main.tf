@@ -2,6 +2,7 @@ resource "aws_instance" "webserver" {
   ami = "ami-0efc43a4067fe9a3e"
   instance_type = "t2.micro"
   key_name = "lenovo"
+  subnet_id = aws_subnet.sbpublic.id
   tags = {
     name = "First EC2"
   }
