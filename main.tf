@@ -17,6 +17,7 @@ resource "aws_vpc" "sbvpc" {
 
 resource "aws_subnet" "sbpublic" {
   vpc_id = aws_vpc.sbvpc.id
+  availability_zone = "us-east-2a"
   cidr_block = "10.20.30.0/26"
     tags = {
     name = "Managed by Terraform. Don't Edit manually"
