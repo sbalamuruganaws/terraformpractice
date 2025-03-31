@@ -67,15 +67,10 @@ resource "aws_route_table" "sbprirt" {
 
 resource "aws_route_table_association" "sbassociate" {
   subnet_id = aws_subnet.sbpublic.id
-  route_table_id = aws_subnet.sbpublic.id
+  route_table_id = aws_route_table.sbmainrt
 }
 
 resource "aws_route_table_association" "sbpriassociate" {
   subnet_id = aws_subnet.sbprivate1.id
-  route_table_id = aws_subnet.sbprivate1.id
-}
-
-resource "aws_route_table_association" "sbpri2associate" {
-  subnet_id = aws_subnet.sbprivate2.id
-  route_table_id = aws_subnet.sbprivate2.id
+  route_table_id = aws_route_table.sbprirt
 }
