@@ -10,6 +10,8 @@ resource "aws_instance" "webserver" {
 resource "aws_vpc" "sbvpc" {
   cidr_block = "10.20.30.0/24"
   instance_tenancy = "default"
+  enable_dns_hostnames = "true"
+  
   tags = {
     name = "Managed by Terraform. Don't Edit manually"
   }
@@ -60,4 +62,19 @@ resource "aws_route_table" "sbprirt" {
   tags = {
     name = "Managed by Terraform. Don't Edit manually"
   }
+}
+
+resource "aws_route_table_association" "sbassociate" {
+  subnet_id = aws_subnet.sbpublic.id
+  route_table_id = aws_subnet.sbpublic.id
+}
+
+resource "aws_route_table_association" "sbpriassociate" {
+  subnet_id = aws_subnet.sbprivate1.id
+  route_table_id = aws_subnet.sbprivate1.id
+}
+
+resource "aws_route_table_association" "sbpri2associate" {
+  subnet_id = aws_subnet.sbprivate2.id
+  route_table_id = aws_subnet.sbprivate2.id
 }
